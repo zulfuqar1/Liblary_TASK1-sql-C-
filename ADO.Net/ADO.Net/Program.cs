@@ -34,6 +34,9 @@ void GetUsersList()
     conn.Close();
 }
 
+
+
+
 void SetUsers(string Name,string SurName,string Phone,string Adress,string Email)
 {
     string query = $"INSERT INTO Users (Name,Surname,Phone,Adress,Email) VALUES ('{Name}','{SurName}','{Phone}','{Adress}','{Email}');";
@@ -59,8 +62,23 @@ void SetUsers(string Name,string SurName,string Phone,string Adress,string Email
 };
 
 
+void GetUsersCount()
+{
+    string query = "SELECT COUNT(*) FROM Users";
+    using (SqlConnection conn = new SqlConnection(connectionStr))
+    {
+        try
+        {
+            SqlCommand comm = new SqlCommand(query, conn);
+            conn.Open();
+            var result = comm.ExecuteScalar();
+            Console.WriteLine($"User Count:{result}");
+        }
 
-SetUsers("Yegane","Aliyeva","55-227-76-24","yeravan","Y@gmail.com");
-
-
-GetUsersList();
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        conn.Close();
+    }
+}
