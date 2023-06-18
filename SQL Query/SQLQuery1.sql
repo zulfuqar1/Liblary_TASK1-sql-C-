@@ -4,7 +4,7 @@ ID int PRIMARY KEY IDENTITY,
 Name nvarchar(50),
 Surname nvarchar(50),
 Phone nvarchar(50) UNIQUE,
-Adress nvarchar(50) UNIQUE,
+Adress nvarchar(50),
 Email nvarchar(50) UNIQUE,
 )
 
@@ -16,13 +16,14 @@ ISBN nvarchar(50) UNIQUE,
 PageCount int,
 )
 
-CREATE TABLE Borrouings
+CREATE TABLE Borrowings
 (
 ID int PRIMARY KEY IDENTITY,
 UserID int,
 FOREIGN KEY (UserID) REFERENCES Users(ID),
 BookID int,
 FOREIGN KEY (BookID) REFERENCES Books(ID),
-BorrouingsDate nvarchar(50),
+BorrowingsDate nvarchar(50),
 ReturnDate nvarchar(50),
 )
+
