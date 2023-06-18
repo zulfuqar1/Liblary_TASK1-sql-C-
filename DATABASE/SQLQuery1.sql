@@ -4,7 +4,7 @@ ID int PRIMARY KEY IDENTITY,
 Name nvarchar(50),
 Surname nvarchar(50),
 Phone nvarchar(50) UNIQUE,
-Adress nvarchar(50) UNIQUE,
+Adress nvarchar(50),
 Email nvarchar(50) UNIQUE,
 )
 

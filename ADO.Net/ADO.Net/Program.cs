@@ -5,7 +5,7 @@ var connectionStr = "Server=DESKTOP-Q15LSIL\\SQLEXPRESS;Database=CODE_DATABASE;T
 SqlConnection conn= new SqlConnection(connectionStr);
 
 
-void GetUserSList() 
+void GetUsersList() 
 {
     string query = "SELECT * FROM Users";
     using (SqlConnection conn = new SqlConnection(connectionStr))
@@ -30,9 +30,37 @@ void GetUserSList()
         {
             Console.WriteLine(ex.Message);
         }
-    }
-
+    };
+    conn.Close();
 }
-conn.Close();
 
-GetUserSList();
+void SetUsers(string Name,string SurName,string Phone,string Adress,string Email)
+{
+    string query = $"INSERT INTO Users (Name,Surname,Phone,Adress,Email) VALUES ('{Name}','{SurName}','{Phone}','{Adress}','{Email}');";
+    using(SqlConnection connection = new SqlConnection(connectionStr))
+    {
+        try
+        {
+            SqlCommand command = new SqlCommand(query, conn);
+            conn.Open();
+            var result = command.ExecuteNonQuery();
+
+            if (result > 0 ) 
+            {
+                Console.WriteLine("User Createt");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        conn.Close();
+    }
+};
+
+
+
+SetUsers("Yegane","Aliyeva","55-227-76-24","yeravan","Y@gmail.com");
+
+
+GetUsersList();
